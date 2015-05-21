@@ -15,14 +15,19 @@ var myHeading = document.querySelector('h1');
 function setUserName(){
 	var myName = prompt('Please enter your name.');
 	localStorage.setItem('name', myName);
-	if (myName === 'null'){
+/*The purpose of the code below is to try to avoid cases where User selects
+OK with blank prompt input or presses cancel.*/
+	if (myName === null){
+		return;
+	}else if (myName === ''){
 		myHeading.innerHTML = 'A Man and the Resistance';
 	} else {
 	myHeading.innerHTML = 'The Resistance is the best, ' + myName;
 	}
 }
 
-if(localStorage.getItem('name') === 'null'){
+
+if(localStorage.getItem('name') === ''){
 	myHeading.innerHTML = 'A Man and the Resistance';
 } else if(!localStorage.getItem('name')){
 	setUserName();
